@@ -1,3 +1,7 @@
+![notion-sdk-typescript-starter](https://github.com/miiiiiiich/apple-mail-to-notion/actions/workflows/typecheck-prettier.yml/badge.svg)
+
+![typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![apple-script](https://img.shields.io/badge/AppleScript-999999?style=for-the-badge&logo=apple&logoColor=white)
 # apple-mail-to-notion
 
 Apple MailからNotionにメールを自動で追加するツール。
