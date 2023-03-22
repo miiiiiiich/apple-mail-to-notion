@@ -4,7 +4,8 @@
 ![apple-script](https://img.shields.io/badge/AppleScript-999999?style=for-the-badge&logo=apple&logoColor=white)
 # apple-mail-to-notion
 
-Apple MailからNotionにメールを自動で追加するツール。
+Apple Mailの未読メールをNotionデータベースに追加するツール。\
+メールマガジンの内容を定期的にNotionに追加することができる。
 
 ## environment
 
