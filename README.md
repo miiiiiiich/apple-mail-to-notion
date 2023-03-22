@@ -30,3 +30,6 @@ npm run start
 
 automatorで定期実行させることで、メールの内容を定期的にNotionに追加することができる。
 
+## reference
+- [notion-sdk-typescript-starter](https://github.com/makenotion/notion-sdk-typescript-starter)
+
