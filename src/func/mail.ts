@@ -14,7 +14,9 @@ export const textFileToMail = (filePath: string): Mail => {
   const lines = text.split("\n");
   const subject = lines[0].replace("Subject: ", "");
   const issueNumberMatch = subject.match(/《(.+?)通目》/);
-  const tag = issueNumberMatch ? issueNumberMatch[1] : "not found";
+  const tag = issueNumberMatch
+    ? issueNumberMatch[1].replace(" ", "")
+    : "not found";
   const mailSubjectMatch = subject.match(/》(.+?)【/);
   const title = mailSubjectMatch ? mailSubjectMatch[1] : subject;
   const dateStringMatch = subject.match(/【(.+?)配信号】/);
