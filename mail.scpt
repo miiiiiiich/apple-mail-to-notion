@@ -1,6 +1,6 @@
 on run argv
   set savePath to item 1 of argv -- 保存先のパス
-  set senderAddress to item 2 of argv -- 保存するメールアドレス 最も早くオシャレになる方法KnowerMag mag2 0001622754 <mailmag@mag2premium.com>
+  set senderAddress to item 2 of argv -- 保存するメールアドレス 
   tell application "Mail"
     set theMessages to messages of inbox whose (sender is senderAddress) and (read status is false)
     set messageCount to count of theMessages
