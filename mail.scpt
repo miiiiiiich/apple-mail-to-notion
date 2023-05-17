@@ -14,7 +14,7 @@ on run argv
         set messageContent to content of thisMessage
         set messageDate to date received of thisMessage
         set messageSender to sender of thisMessage
-        set output to output & "Subject: " & messageSubject & return & "Date: " & messageDate & return & "Content: \n" & messageContent & return & return
+        set output to output & "Subject: " & messageSubject  & "\n" & "Date: " & messageDate & "\n" & "Content: \n" & messageContent
         set saveFilePath to POSIX path of savePath & "/" & i & ".txt"
         set fileRef to open for access saveFilePath with write permission
         set eof fileRef to 0 -- ファイルの終端に移動

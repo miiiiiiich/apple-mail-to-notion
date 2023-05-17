@@ -27,7 +27,7 @@ async function main() {
     );
     await updatePage(notion, createdPage.id, mail);
   }
-  await deleteTxtFiles(savePath);
+  // await deleteTxtFiles(savePath);
 }
 
 main()

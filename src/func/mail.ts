@@ -14,21 +14,12 @@ export const textFileToMail = (filePath: string): Mail => {
   const lines = text.split("\n");
   const subject = lines[0].replace("Subject: ", "");
   const issueNumberMatch = subject.match(/《(.+?)通目》/);
-  const tag = issueNumberMatch
-    ? issueNumberMatch[1].replace(" ", "")
-    : "not found";
-  const mailSubjectMatch = subject.match(/》(.+?)【/);
-  const title = mailSubjectMatch ? mailSubjectMatch[1] : subject;
-  const dateStringMatch = subject.match(/【(.+?)配信号】/);
-  const dateString = dateStringMatch
-    ? dateStringMatch[1]
-        .replace(/年|月/g, "/")
-        .replace(/日/, "")
-        .replace(/\//g, "-")
-    : "";
+  const tag = issueNumberMatch ? issueNumberMatch[1].replace(" ", "") : "extra";
+  const mailSubjectMatch = cleanTitle(subject);
+  const title = mailSubjectMatch ? mailSubjectMatch : subject;
+  const dateString = lines[1].replace("Date: ", "");
   const date = formatDate(dateString);
-  const contents = lines.slice(2);
-  // console.log(text)
+  const contents = lines.slice(3);
   return { title, tag, date, contents };
 };
 
@@ -56,6 +47,14 @@ export const getFilePaths = (dir: string): string[] => {
     .map((fileName) => path.join(dir, fileName));
 };
 
+function cleanTitle(input: string): string {
+  // 「【】」や「《》」内の文字を削除
+  return input
+    .replace(/【.*?】/g, "")
+    .replace(/《.*?》/g, "")
+    .trim();
+}
+
 export const deleteTxtFiles = async (dirPath: string) => {
   const fileNames = await fs.promises.readdir(dirPath);
   const txtFileNames = fileNames.filter(
@@ -67,10 +66,12 @@ export const deleteTxtFiles = async (dirPath: string) => {
   await Promise.all(deletePromises);
 };
 
-const formatDate = (dateString: string) => {
-  if (dateString === "") {
-    return "";
-  }
+const formatDate = (datetimeString: string) => {
+  const japDateString = datetimeString.split(" ")[0];
+  const dateString = japDateString
+    .replace(/年|月/g, "/")
+    .replace(/日/, "")
+    .replace(/\//g, "-");
   const date = new Date(dateString);
   // NOTE: If you do it in Japan time, the date will be off by one day, so you can add one day.
   //  I wanted to make good use of my time zone, but I didn't because I only plan to run it locally.
